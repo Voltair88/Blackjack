@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch GameRunner",
+      "request": "launch",
+      "mainClass": "GameRunner",
+      "projectName": "Blackjack_f449ee33"
+    },
+    {
+      "type": "java",
+      "name": "Launch Program",
+      "request": "launch"
+    }
+  ]
+}
