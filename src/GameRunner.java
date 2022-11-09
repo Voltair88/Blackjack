@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * @TODO: change "player's cards" to name " cards"  
+ */
 public class GameRunner {
 
 	public static void main(String[] args) {
@@ -7,8 +10,12 @@ public class GameRunner {
 		// init 
 		Scanner scan = new Scanner(System.in);
 		Deck deck = new Deck(1, true);
-		Player player = new Player("Player");
 		Player dealer = new Player("Dealer");
+
+		System.out.println("What is your name?");
+		String name = scan.nextLine();
+		System.out.println("Hello " + name + ", welcome to the game of Blackjack!");
+		Player player = new Player(name);
 
 		player.addCard(deck.deal());
 		dealer.addCard(deck.deal());
@@ -60,11 +67,11 @@ public class GameRunner {
 		int dealerSum = dealer.getHandSum();
 
 		if (playerSum > 21) {
-			System.out.println("You busted");
+			System.out.println(name + " busted");
 		} else if (dealerSum > 21) {
 			System.out.println("Dealer busted");
 		} else if (playerSum > dealerSum) {
-			System.out.println("You win");
+			System.out.println(name + " win");
 		} else if (playerSum < dealerSum) {
 			System.out.println("Dealer wins");
 		} else {
