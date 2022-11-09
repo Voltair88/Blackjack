@@ -20,10 +20,11 @@ public class Player {
 
 	public Player(String name) {
 		this.myName = name;
+		this.myHand = new Card[5];
+		this.numCards = 0;
+		this.myMoney = 100;
 		this.myScore = 0;
 		this.myBet = 0;
-		this.myMoney = 100;
-		this.myHand = new Card[5];
 		this.emptyHand();
 	}
 
@@ -90,5 +91,44 @@ public class Player {
 				System.out.printf(" %s %n", this.myHand[i].toString());
 			}
 		}
+	}
+
+	// reset hand
+	public void resetHand() {
+		this.emptyHand();
+	}
+
+	// Getters and Setters
+
+	public int getScore() {
+		return this.myScore;
+	}
+
+	public void setScore(int score) {
+		this.myScore = score;
+	}
+
+	public int getBet() {
+		return this.myBet;
+	}
+
+	public void setBet(int bet) {
+		this.myBet = bet;
+	}
+
+	public int getMoney() {
+		return this.myMoney;
+	}
+
+	public void setMoney(int money) {
+		this.myMoney = money;
+	}
+
+	public String getName() {
+		return this.myName;
+	}
+
+	public void setName(String name) {
+		this.myName = name;
 	}
 }

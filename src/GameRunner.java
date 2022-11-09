@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.util.Random;
 
 /**
- * @TODO: change "player's cards" to name " cards"  
+ * @TODO: add betting  
  */
 public class GameRunner {
 
@@ -16,6 +17,24 @@ public class GameRunner {
 		String name = scan.nextLine();
 		System.out.println("Hello " + name + ", welcome to the game of Blackjack!");
 		Player player = new Player(name);
+
+		Game game = new Game(1);
+		System.out.println("Round " + game.getRound() + " is starting!");
+		System.out.println("You have $" + player.getMoney() + " to start with.");
+		System.out.println("How much money would you like to bet?");
+		int bet = scan.nextInt();
+		game.setMoneyOnTable(bet);
+		player.setBet(bet);
+		player.setMoney(player.getMoney() - bet);
+		// dealer bet
+		Random rand = new Random();
+		int dealerBet = rand.nextInt(100) + 1;
+		dealer.setBet(dealerBet);
+		dealer.setMoney(dealer.getMoney() - dealerBet);
+		game.setMoneyOnTable(game.getMoneyOnTable() + dealerBet);
+		System.out.println("The dealer has bet $" + dealerBet + ".");
+		System.out.println("The money on the table is now $" + game.getMoneyOnTable() + ".");
+		deck.shuffle();
 
 		player.addCard(deck.deal());
 		dealer.addCard(deck.deal());
@@ -58,7 +77,6 @@ public class GameRunner {
 
 			System.out.println();
 		}
-		scan.close();
 
 		player.printHand(true);
 		dealer.printHand(true);
@@ -79,5 +97,13 @@ public class GameRunner {
 		}
 		System.out.println("Your sum: " + player.getHandSum());
 		System.out.println("Dealers sum: " + dealer.getHandSum());
+
+		// reset game
+		player.resetHand();
+		dealer.resetHand();
+		deck.shuffle();
+
+		scan.close();
+
 	}
 }
