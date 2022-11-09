@@ -9,6 +9,10 @@ public class Game {
 		this.moneyOnTable = 0;
 	}
 
+	public void resetMoneyOnTable() {
+		this.moneyOnTable = 0;
+	}
+
 	public void setMoneyOnTable(int money) {
 		this.moneyOnTable = money;
 	}
