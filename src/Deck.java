@@ -75,7 +75,6 @@ public class Deck {
      *
      */
     public Card deal() {
-
         if (isEmpty()) {
             return null;
         }

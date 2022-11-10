@@ -43,8 +43,6 @@ public class GameRunner {
 
 			System.out.println("Cards have been dealt");
 			player.printHand(true);
-			dealer.printHand(false);
-			System.out.println("\n");
 
 			boolean playerDone = false;
 			boolean dealerDone = false;
@@ -57,10 +55,9 @@ public class GameRunner {
 					ans = scan.next();
 					System.out.println();
 					if (ans.equalsIgnoreCase("h")) {
-						playerDone = !player.addCard(deck.deal());
-						System.out.println("You drew a " + player.myHand[player.numCards - 1].toString());
-						player.printHand(true);
+						player.addCard(deck.deal());
 						System.out.println("\n");
+						playerDone = playerDone || player.getHandSum() > 21;
 					} else {
 						playerDone = true;
 					}
@@ -79,7 +76,9 @@ public class GameRunner {
 			}
 
 			player.printHand(true);
+			System.out.println();
 			dealer.printHand(true);
+			System.out.println();
 
 			int playerSum = player.getHandSum();
 			int dealerSum = dealer.getHandSum();
@@ -91,11 +90,16 @@ public class GameRunner {
 				System.out.println("Dealer busted");
 				player.setMoney(player.getMoney() + game.getMoneyOnTable());
 			} else if (playerSum > dealerSum) {
-				System.out.println(name + " win");
+				System.out.println(name + " wins");
 				player.setMoney(player.getMoney() + game.getMoneyOnTable());
+				System.out.println("You won $" + game.getMoneyOnTable() + "!");
+				System.out.println("You now have $" + player.getMoney() + ".");
 			} else if (playerSum < dealerSum) {
 				System.out.println("Dealer wins");
 				dealer.setMoney(dealer.getMoney() + game.getMoneyOnTable());
+			} else if (player.getMoney() == 0) {
+				System.out.println("You are out of money! Game over!");
+				System.exit(0);
 			} else {
 				System.out.println("Push");
 				player.setMoney(player.getMoney() + player.getBet());
@@ -111,9 +115,15 @@ public class GameRunner {
 				playAgain = false;
 			} else {
 				game.setRound(game.getRound() + 1);
-				player.resetHand();
-				dealer.resetHand();
+				player.emptyHand();
+				dealer.emptyHand();
 				playAgain = true;
+				playerDone = false;
+				dealerDone = false;
+			}
+			if (player.getMoney() == 0) {
+				System.out.println("You are out of money!");
+				playAgain = false;
 			}
 		}
 		scan.close();

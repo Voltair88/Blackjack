@@ -1,15 +1,15 @@
 public class Game {
-	// number of rounds of game
 	private int numRounds;
-	// money on the table
 	private int moneyOnTable;
 
+	/**
+	 * @Constructor that defines the number of rounds to be played
+	 * 
+	 * @param numRounds the number of rounds to be played
+	 * @param moneyOnTable the amount of money on the table
+	 */
 	public Game(int numRounds) {
 		this.numRounds = numRounds;
-		this.moneyOnTable = 0;
-	}
-
-	public void resetMoneyOnTable() {
 		this.moneyOnTable = 0;
 	}
 

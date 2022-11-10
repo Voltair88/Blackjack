@@ -4,7 +4,7 @@ public class Player {
 	private int myScore;
 	private int myBet;
 	private int myMoney;
-	Card[] myHand;
+	private Card[] myHand = new Card[10];
 	int numCards; //numCards
 
 	/**
@@ -20,8 +20,6 @@ public class Player {
 
 	public Player(String name) {
 		this.myName = name;
-		this.myHand = new Card[5];
-		this.numCards = 0;
 		this.myMoney = 100;
 		this.myScore = 0;
 		this.myBet = 0;
@@ -29,34 +27,31 @@ public class Player {
 	}
 
 	public void emptyHand() {
-		for (int i = 0; i < myHand.length; i++) {
-			myHand[i] = null;
+		for (int i = 0; i < 5; i++) {
+			this.myHand[i] = null;
 		}
-		numCards = 0;
+		this.numCards = 0;
 	}
 
 	/**
 	 * 
-	 * @param card
-	 * @return true if the card was added to the hand
+	 * @param card the card to be added to the player's hand
+	 * @return true if the card was added to the player's hand
 	 */
 	public boolean addCard(Card card) {
 		if (this.numCards == 5) {
 			System.err.printf("%s's hand already has 5 cards; " + "cannot add another card %n", this.myName);
 			System.exit(1);
 		}
-
 		this.myHand[this.numCards] = card;
 		this.numCards++;
-
-		return (this.getHandSum() <= 21);
+		return (card != null);
 	}
 
 	/**
 	 * 
 	 * @return the sum of the cards in the hand
 	 */
-
 	public int getHandSum() {
 		int handSum = 0;
 		int cardNum;
@@ -69,8 +64,11 @@ public class Player {
 				handSum += 11;
 			} else if (cardNum > 10) {
 				handSum += 10;
-			} else {
+			} else if (cardNum > 1) {
 				handSum += cardNum;
+			} else {
+				System.err.printf("getHandSum(): card number is invalid %n");
+				System.exit(1);
 			}
 		}
 
@@ -82,53 +80,98 @@ public class Player {
 		return handSum;
 	}
 
+	/**
+	 * 
+	 * @param showFirstCard true if the first card should be shown
+	 */
 	public void printHand(boolean showFirstCard) {
-		System.out.printf("%s's cards: %n", this.myName);
+		System.out.println(this.myName + "'s Hand: ");
 		for (int i = 0; i < this.numCards; i++) {
 			if (i == 0 && !showFirstCard) {
 				System.out.println("[hidden]");
 			} else {
-				System.out.printf(" %s %n", this.myHand[i].toString());
+				System.out.printf("%s %n", this.myHand[i].toString());
 			}
 		}
 	}
 
-	// reset hand
-	public void resetHand() {
-		this.emptyHand();
-	}
-
-	// Getters and Setters
-
+	/**
+	 * 
+	 * @return the score of the player
+	 */
 	public int getScore() {
 		return this.myScore;
 	}
 
+	/**
+	 * 
+	 * @param score the score of the player
+	 */
 	public void setScore(int score) {
 		this.myScore = score;
 	}
 
+	/**
+	 * 
+	 * @return the bet of the player
+	 */
 	public int getBet() {
 		return this.myBet;
 	}
 
+	/**
+	 * 
+	 * @param bet the bet of the player
+	 */
 	public void setBet(int bet) {
 		this.myBet = bet;
 	}
 
+	/**
+	 * 
+	 * @return the money of the player
+	 */
 	public int getMoney() {
 		return this.myMoney;
 	}
 
+	/**
+	 * 
+	 * @param money the money of the player
+	 */
 	public void setMoney(int money) {
 		this.myMoney = money;
 	}
 
+	/**
+	 * 
+	 * @return the name of the player
+	 */
 	public String getName() {
 		return this.myName;
 	}
 
+	/**
+	 * 
+	 * @param name the name of the player
+	 */
 	public void setName(String name) {
 		this.myName = name;
+	}
+
+	/**
+	 * 
+	 * @return the hand of the player
+	 */
+	public Card[] getHand() {
+		return this.myHand;
+	}
+
+	/**
+	 * 
+	 * @param hand the hand of the player
+	 */
+	public void setHand(Card[] hand) {
+		this.myHand = hand;
 	}
 }

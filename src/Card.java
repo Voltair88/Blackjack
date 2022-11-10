@@ -23,18 +23,11 @@ public class Card {
      */
     public Card(Suit suit, int value) {
         this.mySuit = suit;
-
-        if (value < 1 || value > 13) {
-            throw new IllegalArgumentException("Invalid card value");
-        } else {
-            this.myValue = value;
-        }
+        this.myValue = value;
     }
 
     /**
-     * Returns the value of the card
-     * 
-     * @return the value
+     * @return the value of the card
      */
     public int getNumber() {
         return myValue;
@@ -42,7 +35,7 @@ public class Card {
 
     public String toString() {
 
-        String valuetoString = "";
+        String valuetoString = " ";
 
         switch (myValue) {
         case 1:
