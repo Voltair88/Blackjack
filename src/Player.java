@@ -54,7 +54,7 @@ public class Player {
 	 */
 	public int getHandSum() {
 		int handSum = 0;
-		int cardNum;
+		int cardNum = 0;
 		int numAces = 0;
 
 		for (int i = 0; i < this.numCards; i++) {
@@ -64,11 +64,8 @@ public class Player {
 				handSum += 11;
 			} else if (cardNum > 10) {
 				handSum += 10;
-			} else if (cardNum > 1) {
-				handSum += cardNum;
 			} else {
-				System.err.printf("getHandSum(): card number is invalid %n");
-				System.exit(1);
+				handSum += cardNum;
 			}
 		}
 
@@ -93,6 +90,7 @@ public class Player {
 				System.out.printf("%s %n", this.myHand[i].toString());
 			}
 		}
+		System.out.printf("sum: %d %n %n", this.getHandSum());
 	}
 
 	/**
