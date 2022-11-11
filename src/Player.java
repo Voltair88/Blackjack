@@ -4,6 +4,9 @@ public class Player {
 	private int myScore;
 	private int myBet;
 	private int myMoney;
+	/*
+	 * @TODO: fix this
+	 */
 	private Card[] myHand = new Card[10];
 	int numCards; //numCards
 
@@ -26,8 +29,9 @@ public class Player {
 		this.emptyHand();
 	}
 
+	// remove all cards from the player's hand
 	public void emptyHand() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			this.myHand[i] = null;
 		}
 		this.numCards = 0;
@@ -39,10 +43,6 @@ public class Player {
 	 * @return true if the card was added to the player's hand
 	 */
 	public boolean addCard(Card card) {
-		if (this.numCards == 5) {
-			System.err.printf("%s's hand already has 5 cards; " + "cannot add another card %n", this.myName);
-			System.exit(1);
-		}
 		this.myHand[this.numCards] = card;
 		this.numCards++;
 		return (card != null);
@@ -57,8 +57,12 @@ public class Player {
 		int cardNum = 0;
 		int numAces = 0;
 
+		/**
+		 * @TODO Fix this loop
+		 * when dealer hits it crashes
+		 */
 		for (int i = 0; i < this.numCards; i++) {
-			cardNum = this.myHand[i].getNumber();
+			cardNum = this.getHand()[i].getValue();
 			if (cardNum == 1) {
 				numAces++;
 				handSum += 11;
@@ -87,10 +91,9 @@ public class Player {
 			if (i == 0 && !showFirstCard) {
 				System.out.println("[hidden]");
 			} else {
-				System.out.printf("%s %n", this.myHand[i].toString());
+				System.out.printf("%s %n", this.getHand()[i].toString());
 			}
 		}
-		System.out.printf("sum: %d %n %n", this.getHandSum());
 	}
 
 	/**

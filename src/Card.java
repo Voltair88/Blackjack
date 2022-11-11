@@ -1,13 +1,12 @@
 public class Card {
 
     /**
-     * @card Suits is one of four possible values
-     *       Clubs, Diamonds, Hearts, Spades
+     * @mySuit Clubs, Diamonds, Hearts, Spades
      */
     private final Suit mySuit;
 
     /**
-     * @card Rank is one of thirteen possible values
+     * @myValue Rank is one of thirteen possible values
      *       Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen,
      *       King
      */
@@ -34,8 +33,8 @@ public class Card {
     /**
      * @return the value of the card
      */
-    public int getNumber() {
-        return myValue;
+    public int getValue() {
+        return this.myValue;
     }
 
     public String toString() {
@@ -44,6 +43,6 @@ public class Card {
         String[] cardValues = { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
                 "Queen", "King" };
 
-        return cardValues[myValue - 1] + " of " + mySuit;
+        return cardValues[this.myValue - 1] + " of " + this.mySuit;
     }
 }

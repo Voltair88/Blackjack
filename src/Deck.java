@@ -1,5 +1,9 @@
 import java.util.Random;
 
+/**
+ * <p>This class represents a deck of cards. It can be used to create a deck of cards with a specified number of decks, and can be shuffled.
+ * It can also be used to deal cards from the deck.</p>
+ */
 public class Deck {
     private Card[] myCards;
 
