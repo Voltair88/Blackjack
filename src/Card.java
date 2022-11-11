@@ -10,7 +10,7 @@ public class Card {
      *       Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen,
      *       King
      */
-    private final int myValue;
+    private int myValue;
 
     /**
      * @card Constructor

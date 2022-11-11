@@ -4,20 +4,13 @@ public class Player {
 	private int myScore;
 	private int myBet;
 	private int myMoney;
-	/*
-	 * @TODO: fix this
-	 */
+	private int numCards;
 	private Card[] myHand = new Card[10];
-	int numCards; //numCards
 
 	/**
 	 * @Constructor that defines the name of the player
 	 * 
 	 * @param name the name of the player
-	 * @param myMoney the amount of money the player has
-	 * @param myScore the score of the player
-	 * @param myBet the bet of the player
-	 * @param numCards the size of the player's hand
 	 * 
 	 */
 
@@ -26,7 +19,6 @@ public class Player {
 		this.myMoney = 100;
 		this.myScore = 0;
 		this.myBet = 0;
-		this.emptyHand();
 	}
 
 	// remove all cards from the player's hand
@@ -56,11 +48,6 @@ public class Player {
 		int handSum = 0;
 		int cardNum = 0;
 		int numAces = 0;
-
-		/**
-		 * @TODO Fix this loop
-		 * when dealer hits it crashes
-		 */
 		for (int i = 0; i < this.numCards; i++) {
 			cardNum = this.getHand()[i].getValue();
 			if (cardNum == 1) {
@@ -86,12 +73,12 @@ public class Player {
 	 * @param showFirstCard true if the first card should be shown
 	 */
 	public void printHand(boolean showFirstCard) {
-		System.out.println(this.myName + "'s Hand: ");
+		System.out.printf("%s's cards:%n", this.myName);
 		for (int i = 0; i < this.numCards; i++) {
 			if (i == 0 && !showFirstCard) {
 				System.out.println("[hidden]");
 			} else {
-				System.out.printf("%s %n", this.getHand()[i].toString());
+				System.out.printf(" %s %n", this.myHand[i].toString());
 			}
 		}
 	}

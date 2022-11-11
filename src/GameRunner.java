@@ -8,7 +8,6 @@ public class GameRunner {
 		// init 
 		Scanner scan = new Scanner(System.in);
 		Deck deck = new Deck(1, true);
-		Player dealer = new Player("Dealer");
 		Boolean playAgain = true;
 		Game game = new Game(1);
 		int round = 1;
@@ -17,6 +16,7 @@ public class GameRunner {
 		System.out.printf("Hello %s, welcome to Blackjack!%n", name);
 		System.out.printf("You can enter '0' at any given time to quit.%n%n");
 		Player player = new Player(name);
+		Player dealer = new Player("Dealer");
 		// game loop
 		while (playAgain) {
 			playAgain = false;
@@ -72,7 +72,6 @@ public class GameRunner {
 			player.printHand(true);
 			System.out.printf("sum: %d %n %n", player.getHandSum());
 			dealer.printHand(false);
-			System.out.println();
 
 			boolean playerDone = false;
 			boolean dealerDone = false;
@@ -162,11 +161,10 @@ public class GameRunner {
 				System.out.println("Thanks for playing!");
 			} else {
 				game.setRound(round++);
+				// reset player and dealer hands
 				player.emptyHand();
 				dealer.emptyHand();
 				playAgain = true;
-				playerDone = false;
-				dealerDone = false;
 			}
 		}
 		scan.close();
